@@ -1,18 +1,21 @@
-# cucumber-rest-assured-extentreports vanilla project
+# Automation Task
 This project is a plan project with Cucumber framework to automate Rest API's.
-  - Automation of restfull api or webservices projects with Rest Assured
+  - Automation of Rest API projects with Rest Assured
   - This also includes the extent reporting.
     
-I have used following URL for dummy `POST`, `GET` and `PUT` requests:
-  
-https://reqres.in/
-## Table of Contents (Optional)
+I have used following URL for   `GET` requests:
+http://www.colourlovers.com/api/patterns
+
+
+##Task Requirement : 
+Make a GET request to colourlovers api http://www.colourlovers.com/api/patterns and write an assertion for <numViews> (from response) to be greater than 4000” 
+
+## Table of Contents 
 
 - [Preconditions](#Preconditions)
 - [MAVEN_Dependencies](#MAVEN_Dependencies)
 - [SetUp](#SetUp)
 - [Add_features_and_respective_step_definitions](#Add_features_and_respective_step_definitions)
-- [Support](#Support)
 
 ---
 
@@ -138,27 +141,20 @@ public class RunCucumberTest {
 ```
 ## Add_features_and_respective_step_definitions
 ```feature
-#Author: Arjun
-Feature: GET: Automated Demo Tests
-  Description: GET: purpose of this feature is to test some demo app.
+#Author: Hesham
+Feature: Getting The Number of the patterns views from the Colorlover API XML Response and validate it it Greater than 4000
+
 
   @get
-  Scenario Outline: GET: Test the Demo app
-    Given I want to set URL as "<URL>" for test case "<TestName>"
-    When I set header content type as "<ContentType>"
-    When I hit the API with requestbody "<RequestBody>" and request method is "<RequestMethod>"
+  Scenario Outline: GET the Number of the patterns view
+    Given Color Lover Patterns API endpoint exists as "<URL>" for test case "<TestName>"
+     When I send a valid Get Request to Get Patterns API XML File
     Then I try to verify the status code is "<StatusCode>"
-
+ And I should see the Number of Views of Pattern "<patternNumber>" Greater Than "<threshold>"
     Examples: 
-      | TestName  | URL               | ContentType      | RequestBody | RequestMethod | StatusCode |
-      | Demo test | /api/users?page=2 | application/json |             | GET           |        200 |
+      | TestName  | URL                                      | StatusCode | patternNumber | threshold |
+      | Demo test | http://www.colourlovers.com/api/patterns |    200     |       1       |   4000    |
+
+  
 ```
 
-## Support
-
-Reach out to me at one of the following places!
-
-- FaceBook at <a href="https://www.facebook.com/chinna.mir.3" target="_blank">`arjun`</a>
-- Twitter at <a href="https://twitter.com/arjun436" target="_blank">`@arjun436`</a>
-
----
